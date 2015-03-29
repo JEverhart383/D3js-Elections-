@@ -294,10 +294,10 @@
 {
 	"state": "New York" ,
 	"postal_code": "NY",
-	"electoral_votes": 5,
-	"dem_votes": 415335 , 
-	"rep_votes": 335788, 
-	"other_votes": 32635 
+	"electoral_votes": 29,
+	"dem_votes": 4485741 , 
+	"rep_votes": 2490431 , 
+	"other_votes": 104987  
 
 },
 {
