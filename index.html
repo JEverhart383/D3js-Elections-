@@ -2,62 +2,73 @@
 
 <html>
 <head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="js/d3.min.js"></script>
 
 </head>
 <body>
-<header>
-	<h1>Presidential Election Data Visualization</h1>
-	<h2>A working project by Jeff Everhart...</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8"> 
+				<header>
+					<h1>Historical Presidential Election Data Visualization</h1>
+					<nav>
+						<ul>
+							<li class="two-thousand-six btn btn-default">2006</li>
+							<li class="two-thousand-eight btn btn-default">2008</li>
+							<li class="two-thousand-twelve btn btn-default">2012</li>
+						</ul>
 
-	<nav>
-		<ul>
-			<li class="two-thousand-six">2006</li>
-			<li class="two-thousand-eight">2008</li>
-			<li class="two-thousand-twelve">2012</li>
-		</ul>
+					</nav>
+				</header>
 
-	</nav>
-</header>
+				<div class="chart">
+				</div>
+		</div>	
 
-<div class="chart">
-</div>
+		<div class="display col-lg-4">
+			<div class="popular-vote panel panel-default">
+				<div class="panel-heading"><h3>Popular Vote<span class="total-year"><span></h3></div>
+				<div class="panel-body">
+					<span>Total:</span><span class="total-vote"></span><br>
+					<span>Democratic:</span><span class="total-dem-vote"></span><br>
+					<span>Republican:</span><span class="total-rep-vote"></span><br>
+					<span>Other:</span><span class="total-third-vote"></span><br>
+					
+					<div class="pie-chart">
+					</div>
+				</div>
+			</div>
+			
+			<div class="state-display panel panel-default">
+				<div class="panel-heading"><h3>State Information<span class="total-year"><span></h3></div>
+				<div class="panel-body">	
+					<span>Name:</span><span class="state-name"></span><br>
+					<span>Electoral Votes:</span><span class="state-electoral"></span><br>
+					<span>Total:</span><span class="state-total-vote"></span><br>
+					<span>Democratic:</span><span class="state-dem-vote"></span><br>
+					<span>Republican:</span><span class="state-rep-vote"></span><br>
+					<span>Other:</span><span class="state-third-vote"></span><br>
+					
+					<div class="state-pie-chart">
+					</div>
+				</div>	
+			</div>
 
-<div class="display">
-	<div class="popular-vote">
-		<h3>Popular Vote<span class="total-year"><span></h3>
-		<span>Total:</span><span class="total-vote"></span><br>
-		<span>Democratic:</span><span class="total-dem-vote"></span><br>
-		<span>Republican:</span><span class="total-rep-vote"></span><br>
-		<span>Other:</span><span class="total-third-vote"></span><br>
-		
-		<div class="pie-chart">
+		</div>	
+		 
+
+
+		<div id="tooltip" class="hidden">
+		        <p><strong><span id="value"></span></strong></p>
 		</div>
+
+		<footer><h2>A working project by Jeff Everhart...</h2></footer>
+		<!-- End Row -->
 	</div>
-	
-	<div class="state-display">
-		<h3>State Information<span class="state-year"><span></h3>
-		<span>Name:</span><span class="state-name"></span><br>
-		<span>Electoral Votes:</span><span class="state-electoral"></span><br>
-		<span>Total:</span><span class="state-total-vote"></span><br>
-		<span>Democratic:</span><span class="state-dem-vote"></span><br>
-		<span>Republican:</span><span class="state-rep-vote"></span><br>
-		<span>Other:</span><span class="state-third-vote"></span><br>
-		
-		<div class="state-pie-chart">
-		</div>
-
-	</div>
-
-</div>	
-	 
-</aside>
-
-<div id="tooltip" class="hidden">
-        <p><strong><span id="value"></span></strong></p>
+	<!-- End Container-->
 </div>
-
 
 
 
