@@ -1,17 +1,10 @@
 /* Global Styles */
 
-div {
-	border: 1 px solid black;
-}
-
-body {
-	font: 12px Arial;
-}
-
+/*
 .chart {
 	display:inline;
 }
-
+*/
 /*SVG Styles */
 		
 .axis path,
@@ -32,7 +25,7 @@ circle:hover {
 
 /* Nav Button Styles */
 
-nav ul {
+/*nav ul {
 	list-style-type: none;
 }
 
@@ -45,11 +38,11 @@ li {
 	border:1px solid black;
 	padding:.25em;
 	border-radius: 5px;
-}
+}*/
 
 /*Info Display Styles*/
 
-.display {
+/*.display {
 	height: 605px;
 	width: 300px;
 	float:right;
@@ -78,7 +71,7 @@ div span {
 	font-size: 1.25em;
 	padding:.25em;
 	margin:.125em;
-}
+}*/
 
 /*Tooltip Styles */
 
