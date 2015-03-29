@@ -20,8 +20,8 @@ function updateDataViz(dataPath, totalDataPath){
 
 	//Chart variable for scale
 	var margins = {top:30, right: 20, bottom: 30, left: 50}
-	var chartHeight = 700 - margins.top - margins.bottom;
-	var chartWidth = 1000 -margins.right - margins.left;
+	var chartHeight = 500 - margins.top - margins.bottom;
+	var chartWidth = 800 -margins.right - margins.left;
 	var padding = 70; 
 	var svg = d3.select(".chart svg");
 
@@ -250,9 +250,9 @@ d3.select(".chart svg").remove("svg");
 		var data = json; 
 
 
-		var margins = {top:30, right: 20, bottom: 30, left: 50}
-		var chartHeight = 700 - margins.top - margins.bottom;
-		var chartWidth = 1000 -margins.right - margins.left;
+		var margins = {top:30, right: 20, bottom: 30, left: 30}
+		var chartHeight = 500 - margins.top - margins.bottom;
+		var chartWidth = 850 -margins.right - margins.left;
 		var padding = 70; 
 		var svg = d3.select(".chart").append('svg')
 			.attr('width', chartWidth)
