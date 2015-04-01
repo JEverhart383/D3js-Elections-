@@ -1,10 +1,4 @@
-/* Global Styles */
 
-/*
-.chart {
-	display:inline;
-}
-*/
 /*SVG Styles */
 		
 .axis path,
@@ -16,62 +10,12 @@
 
 circle:hover {
 	stroke: black;
-	opacity: .75;
+	opacity: .65;
     -moz-transition: all 0.3s;
     -o-transition: all 0.3s;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
-
-/* Nav Button Styles */
-
-/*nav ul {
-	list-style-type: none;
-}
-
-li {
-	font-size: 1.25em;
-	display:inline;
-	height: 3em;
-	width: 3em;
-	background-color: gray;
-	border:1px solid black;
-	padding:.25em;
-	border-radius: 5px;
-}*/
-
-/*Info Display Styles*/
-
-/*.display {
-	height: 605px;
-	width: 300px;
-	float:right;
-}
-
-.state-display {
-	height: 300px;
-	width: 300px;
-	border:1px solid black;
-	margin-top: 2.5px;
-}
-
-.popular-vote {
-	height: 300px;
-	width: 300px;
-	border:1px solid black;
-	margin-bottom: 2.5px;
-}
-
-div h3 {
-	text-align: center;
-	font-size: 1.25em;
-}
-
-div span {
-	font-size: 1.25em;
-	padding:.25em;
-	margin:.125em;
-}*/
 
 /*Tooltip Styles */
 
