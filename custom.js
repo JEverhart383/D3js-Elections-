@@ -1,17 +1,9 @@
 
-// State Vote Globals
-// var margins = {top:30, right: 20, bottom: 30, left: 50}
-// var chartHeight = 700 - margins.top - margins.bottom;
-// var chartWidth = 1000 -margins.right - margins.left;
-// var padding = 70; 
-// var svg = d3.select(".chart").append('svg')
-// 	.attr('width', chartWidth)
-// 	.attr('height', chartHeight);
-
-
-dataPath2012 = "data2012.json"; 
-dataPath2008 = "data2008.json";
-dataPath2006 = "data2006.json";
+//Global varibales for data paths 
+var dataPath2012 = "data2012.json"; 
+var dataPath2008 = "data2008.json";
+var dataPath2006 = "data2006.json";
+var electionTotalsPath = "electiontotals.json"; 
 
 
 //Function to update Circles position and color 
@@ -63,12 +55,12 @@ function updateDataViz(dataPath, totalDataPath){
 		var arc = d3.svg.arc()
 		                .innerRadius(innerRadius)
 		                .outerRadius(outerRadius);
+
 		var pieChart = d3.select(".pie-chart")
 							.append("svg")
 							.attr("width", w)
-							.attr("height",h)
-							.style("padding-top", 25)
-							.style("padding-left", 75);
+							.attr("height",h);
+							//.style("padding-left", 75);
 
 		var arcs = pieChart.selectAll("g.arc")
 							.data(pie(popularPieArray))
@@ -147,87 +139,7 @@ function updateDataViz(dataPath, totalDataPath){
 			})
 			.attr("r", function(d){
 				return rScale(d.electoral_votes);
-			})
-			.on("click", function(d){
-
-				d3.select(".state-pie-chart svg").remove("svg");
-				d3.select(".state-name").text(d.state + ", " + d.postal_code);
-				d3.select(".state-total-vote").text((d.dem_votes + d.rep_votes + d.other_votes));
-				d3.select(".state-dem-vote").text(d.dem_votes);
-				d3.select(".state-rep-vote").text(d.rep_votes);
-				d3.select(".state-third-vote").text(d.other_votes);
-				d3.select(".state-electoral").text(d.electoral_votes);
-
-				stateTotalArray = [d.dem_votes, d.rep_votes, d.other_votes];
-				pie = d3.layout.pie();
-				var w = 150;
-				var h = 150;
-				var outerRadius = w / 2;
-				var innerRadius = 0;
-				var arc = d3.svg.arc()
-				                .innerRadius(innerRadius)
-				                .outerRadius(outerRadius);
-				var statePieChart = d3.select(".state-pie-chart")
-									.append("svg")
-									.attr("width", w)
-									.attr("height",h)
-									.style("padding-left", 75);
-
-				var arcs = statePieChart.selectAll("g.arc")
-									.data(pie(stateTotalArray))
-									.enter()
-									.append("g")
-									.attr("class","arc")
-									.attr("transform",  "translate(" + outerRadius + "," + outerRadius + ")" );                
-
-				var color = d3.scale.linear().domain([0,1,2]).range(["blue", "red", "gray"]);
-
-				arcs.append("path")
-				    .attr("fill", function(d, i) {
-				        return color(i);
-				    })
-				    .attr("d", arc);
-
-			}) //End on click function 
-			.on("mouseover", function(d) {
-
-				//Get this bar's x/y values, then augment for the tooltip
-				var xPosition = parseFloat(d3.select(this).attr("cx")) ;
-				var yPosition = parseFloat(d3.select(this).attr("cy"));
-
-				//Update the tooltip position and value
-				d3.select("#tooltip")
-				  .style("left", xPosition + "px")
-				  .style("top", yPosition + "px")
-				  .select("#value")
-				  .text(d.state + ", " + d.postal_code + " (" + d.electoral_votes + ")");
-
-				//Show the tooltip
-				d3.select("#tooltip").classed("hidden", false);
-
-			})
-			.on("mouseout", function() {
-
-				//Hide the tooltip
-				d3.select("#tooltip").classed("hidden", true);
-
-			});//End event handlers 
-
-
-
-
-		//Create Axes
-
-			svg.append("g")
-			.attr("class", "axis")
-			.attr("transform", "translate(0," + parseInt(chartHeight - padding) + ")")
-			.call(xAxis);
-
-			svg.append("g")
-			.attr("class", "axis")
-			.attr("transform", "translate(" + padding + ", 0)")
-			.call(yAxis);
-
+			});
 
 	});//End JSON Function 
 };//End updateDataViz
@@ -297,9 +209,9 @@ d3.select(".chart svg").remove("svg");
 		var pieChart = d3.select(".pie-chart")
 							.append("svg")
 							.attr("width", w)
-							.attr("height",h)
-							.style("padding-top", 25)
-							.style("padding-left", 75);
+							.attr("height",h);
+							// .style("padding-top", 25);
+							// .style("padding-left", 75);
 
 		var arcs = pieChart.selectAll("g.arc")
 							.data(pie(popularPieArray))
@@ -404,8 +316,8 @@ d3.select(".chart svg").remove("svg");
 				var statePieChart = d3.select(".state-pie-chart")
 									.append("svg")
 									.attr("width", w)
-									.attr("height",h)
-									.style("padding-left", 75);
+									.attr("height",h); 
+									// .style("padding-left", 75);
 
 				var arcs = statePieChart.selectAll("g.arc")
 									.data(pie(stateTotalArray))
@@ -432,7 +344,7 @@ d3.select(".chart svg").remove("svg");
 				//Update the tooltip position and value
 				d3.select("#tooltip")
 				  .style("left", xPosition + "px")
-				  .style("top", yPosition + "px")
+				  .style("top", (yPosition + 245) + "px")
 				  .select("#value")
 				  .text(d.state + ", " + d.postal_code + " (" + d.electoral_votes + ")");
 
@@ -461,6 +373,16 @@ d3.select(".chart svg").remove("svg");
 			.attr("class", "axis")
 			.attr("transform", "translate(" + padding + ", 0)")
 			.call(yAxis);
+
+		//Create Axis Labels
+
+		svg.append("text")
+			.attr("class", "y label")
+			.attr("text-anchor", "end")
+			.attr("y", 6)
+			.attr("dy", ".75em")
+			.text("Democratic Votes"); 
+
 
 
 	});//End JSON Function 
