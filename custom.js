@@ -3,6 +3,7 @@
 var dataPath2012 = "data2012.json"; 
 var dataPath2008 = "data2008.json";
 var dataPath2006 = "data2006.json";
+
 var electionTotalsPath = "electiontotals.json"; 
 
 
@@ -153,9 +154,17 @@ function updateDataViz(dataPath, totalDataPath){
 
 
 
-function generateDataViz(dataPath){
+function generateDataViz(dataPath, totalsPath){
 
 d3.select(".chart svg").remove("svg");
+
+	d3.json(totalsPath, function(error, json){
+		if (error) return console.warn(error); 
+		var electionsTotal = json; 
+
+		console.log(electionsTotal); 
+
+	}); 
 
 	d3.json(dataPath, function(error, json){
 		if(error) return console.warn(error); 
@@ -344,7 +353,7 @@ d3.select(".chart svg").remove("svg");
 				//Update the tooltip position and value
 				d3.select("#tooltip")
 				  .style("left", xPosition + "px")
-				  .style("top", (yPosition + 245) + "px")
+				  .style("top", (yPosition + 175) + "px")
 				  .select("#value")
 				  .text(d.state + ", " + d.postal_code + " (" + d.electoral_votes + ")");
 
@@ -389,7 +398,7 @@ d3.select(".chart svg").remove("svg");
 };//End generateDataViz
 
 //Call DataViz
-generateDataViz(dataPath2012); 
+generateDataViz(dataPath2012, electionTotalsPath); 
 
 // Bind DataViz to event handlers
 
