@@ -1,7 +1,7 @@
 [
 {
 
-	"2012": {
+	"twenty-twelve": {
 		"dem_candidate": "Barack Obama", 
 		"rep_candidate": "Mitt Romney", 
 		"dem_electoral" : 332, 
@@ -9,7 +9,7 @@
 		"dem_media": "http://en.wikipedia.org/wiki/United_States_presidential_election,_2012#/media/File:Obama_portrait_crop.jpg", 
 		"rep_media" : "http://en.wikipedia.org/wiki/United_States_presidential_election,_2012#/media/File:Mitt_Romney_by_Gage_Skidmore_6_cropped.jpg"
 	}
-},
+}
 
 
 
