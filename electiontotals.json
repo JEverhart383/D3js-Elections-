@@ -1,21 +1,12 @@
-[
+
 {
 
-	"2012": {
+	"twenty_twelve": {
 		"dem_candidate": "Barack Obama", 
 		"rep_candidate": "Mitt Romney", 
 		"dem_electoral" : 332, 
 		"rep_electoral" : 206, 
-		"dem_media": "http://en.wikipedia.org/wiki/United_States_presidential_election,_2012#/media/File:Obama_portrait_crop.jpg", 
-		"rep_media" : "http://en.wikipedia.org/wiki/United_States_presidential_election,_2012#/media/File:Mitt_Romney_by_Gage_Skidmore_6_cropped.jpg"
+		"dem_media": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Obama_portrait_crop.jpg/640px-Obama_portrait_crop.jpg", 
+		"rep_media" : "http://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Mitt_Romney_by_Gage_Skidmore_6_cropped.jpg/640px-Mitt_Romney_by_Gage_Skidmore_6_cropped.jpg"
 	}
-},
-
-
-
-
-
-
-
-
-]
+}
