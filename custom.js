@@ -17,6 +17,22 @@ function updateDataViz(dataPath, totalDataPath){
 	var padding = 70; 
 	var svg = d3.select(".chart svg");
 
+	//Set Primary Panel Display from totalDataPath
+
+	d3.json(totalDataPath, function(error, json){
+		if(error) return console.warn(error);
+		var totals = json; 
+
+		console.log("here"); 
+
+		d3.select("dem-candidate").text(totals.dem_candidate); 
+		d3.select("rep-candidate").text(totals.rep_candidate);
+
+		d3.select("dem-picture").append("img").attr("src", totals.dem_media);   
+
+
+	})
+
 	d3.json(dataPath, function(error, json){
 		if(error) return console.warn(error); 
 		var data = json; 
@@ -153,9 +169,28 @@ function updateDataViz(dataPath, totalDataPath){
 
 
 
-function generateDataViz(dataPath){
+function generateDataViz(dataPath, totalDataPath){
 
 d3.select(".chart svg").remove("svg");
+
+		//Set Primary Panel Display from totalDataPath
+
+	d3.json(totalDataPath, function(error, json){
+		if(error) return console.warn(error);
+		var totals = json; 
+
+		console.log("here"); 
+		console.log(totals); 
+		console.log(totals.twenty_twelve.dem_candidate); 
+
+		d3.select(".dem-candidate").text(totals.twenty_twelve.dem_candidate); 
+		d3.select(".rep-candidate").text(totals.twenty_twelve.rep_candidate);
+
+		d3.select(".dem-picture").html('<img class="img img-responsive" src=' + totals.twenty_twelve.dem_media +'>');
+		d3.select(".rep-picture").html('<img class="img img-responsive" src=' + totals.twenty_twelve.rep_media +'>');   
+
+
+	})
 
 	d3.json(dataPath, function(error, json){
 		if(error) return console.warn(error); 
@@ -389,12 +424,12 @@ d3.select(".chart svg").remove("svg");
 };//End generateDataViz
 
 //Call DataViz
-generateDataViz(dataPath2012); 
+generateDataViz(dataPath2012, electionTotalsPath); 
 
 // Bind DataViz to event handlers
 
 d3.select(".two-thousand-eight").on("click", function(){
-	updateDataViz(dataPath2008);
+	updateDataViz(dataPath2008, electionTotalsPath);
 	d3.select(".total-year").text(" 2008");
 	d3.select(".state-year").text(" 2008");
 
