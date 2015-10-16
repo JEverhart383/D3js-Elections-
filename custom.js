@@ -2,7 +2,7 @@
 //Global varibales for data paths 
 var dataPath2012 = "data2012.json"; 
 var dataPath2008 = "data2008.json";
-var dataPath2006 = "data2006.json";
+var dataPath2004 = "data2004.json";
 var electionTotalsPath = "electiontotals.json"; 
 
 
@@ -10,19 +10,25 @@ var electionTotalsPath = "electiontotals.json";
 
 function updateDataViz(dataPath, totalDataPath){
 
+	
+	//remove total panel html
+
+
 	//Chart variable for scale
 	var margins = {top:30, right: 20, bottom: 30, left: 50}
 	var chartHeight = 500 - margins.top - margins.bottom;
-	var chartWidth = 800 -margins.right - margins.left;
+	var chartWidth = 800 - margins.right - margins.left;
 	var padding = 70; 
 	var svg = d3.select(".chart svg");
 
 	var pathToTotal; 
 
 	if (dataPath === "data2008.json"){
-		pathToTotal = "twenty_o_eight"; 
+		pathToTotal = "two_thousand_eight"; 
 	} else if (dataPath === "data2012.json"){
-		pathToTotal = "twenty_twelve";
+		pathToTotal = "two_thousand_twelve";
+	} else if (dataPath === "data2004.json"){
+		pathToTotal = "two_thousand_four";
 	}
 
 	//Set Primary Panel Display from totalDataPath
@@ -31,16 +37,21 @@ function updateDataViz(dataPath, totalDataPath){
 		if(error) return console.warn(error);
 		var totals = json; 
 
-		d3.select("dem-candidate").text(totals.pathToTotal.dem_candidate); 
-		d3.select("rep-candidate").text(totals.pathToTotal.rep_candidate);
+		 var obj = totals[pathToTotal]; 
+		 console.log(obj);
 
-		d3.select("dem-picture").append("img").attr("src", totals.dem_media);   
+		d3.select(".dem-candidate").text(obj.dem_candidate); 
+		d3.select(".rep-candidate").text(obj.rep_candidate);
+
+		d3.select(".dem-picture").html('<img class="img img-responsive" src="' + obj.dem_media +'">');
+		d3.select(".rep-picture").html('<img class="img img-responsive" src="' + obj.rep_media +'">');       
 
 
 	})
 
 	d3.json(dataPath, function(error, json){
-		if(error) return console.warn(error); 
+		
+		//if(error) return console.warn(error); 
 		var data = json; 
 
 		var popularVote = 0;
@@ -49,24 +60,24 @@ function updateDataViz(dataPath, totalDataPath){
 		var popularThirdVote = 0;
 		var popularPieArray;
 
-		// Load Total Variables 
-		for (var i = 0; i < data.length; i++){
+			// Load Total Variables 
+			for (var i = 0; i < data.length; i++){
 
-			popularVote = popularVote + data[i].dem_votes + data[i].rep_votes + data[i].other_votes;
-			popularRepVote = popularRepVote + data[i].rep_votes; 
-			popularDemVote = popularDemVote + data[i].dem_votes;
-			popularThirdVote = popularThirdVote + data[i].other_votes; 
-		}	
+				popularVote = popularVote + data[i].dem_votes + data[i].rep_votes + data[i].other_votes;
+				popularRepVote = popularRepVote + data[i].rep_votes; 
+				popularDemVote = popularDemVote + data[i].dem_votes;
+				popularThirdVote = popularThirdVote + data[i].other_votes; 
+			}	
 
-		popularPieArray = [popularDemVote, popularRepVote, popularThirdVote];
+			popularPieArray = [popularDemVote, popularRepVote, popularThirdVote];
 
-		d3.select(".pie-chart svg").remove("svg");
+			d3.select(".pie-chart svg").remove("svg");
 
-		// Write Total Variabes and Pie to Display
-		d3.select(".total-vote").text(popularVote);
-		d3.select(".total-dem-vote").text(popularDemVote);
-		d3.select(".total-rep-vote").text(popularRepVote);
-		d3.select(".total-third-vote").text(popularThirdVote);
+			// Write Total Variabes and Pie to Display
+			d3.select(".total-vote").text(popularVote);
+			d3.select(".total-dem-vote").text(popularDemVote);
+			d3.select(".total-rep-vote").text(popularRepVote);
+			d3.select(".total-third-vote").text(popularThirdVote);
 
 		pie = d3.layout.pie();
 
@@ -164,7 +175,7 @@ function updateDataViz(dataPath, totalDataPath){
 			});
 
 	});//End JSON Function 
-};//End updateDataViz
+}//End updateDataViz
 
 
 
@@ -187,13 +198,13 @@ d3.select(".chart svg").remove("svg");
 
 		console.log("here"); 
 		console.log(totals); 
-		console.log(totals.twenty_twelve.dem_candidate); 
+		console.log(totals.two_thousand_twelve.dem_candidate); 
 
-		d3.select(".dem-candidate").text(totals.twenty_twelve.dem_candidate); 
-		d3.select(".rep-candidate").text(totals.twenty_twelve.rep_candidate);
+		d3.select(".dem-candidate").text(totals.two_thousand_twelve.dem_candidate); 
+		d3.select(".rep-candidate").text(totals.two_thousand_twelve.rep_candidate);
 
-		d3.select(".dem-picture").html('<img class="img img-responsive" src=' + totals.twenty_twelve.dem_media +'>');
-		d3.select(".rep-picture").html('<img class="img img-responsive" src=' + totals.twenty_twelve.rep_media +'>');   
+		d3.select(".dem-picture").html('<img class="img img-responsive" src=' + totals.two_thousand_twelve.dem_media +'>');
+		d3.select(".rep-picture").html('<img class="img img-responsive" src=' + totals.two_thousand_twelve.rep_media +'>');   
 
 
 	})
@@ -429,6 +440,13 @@ generateDataViz(dataPath2012, electionTotalsPath);
 
 // Bind DataViz to event handlers
 
+d3.select(".two-thousand-twelve").on("click", function(){
+	updateDataViz(dataPath2012, electionTotalsPath);
+	d3.select(".total-year").text(" 2012");
+	d3.select(".state-year").text(" 2012");
+
+});
+
 d3.select(".two-thousand-eight").on("click", function(){
 	updateDataViz(dataPath2008, electionTotalsPath);
 	d3.select(".total-year").text(" 2008");
@@ -436,9 +454,10 @@ d3.select(".two-thousand-eight").on("click", function(){
 
 });
 
-d3.select(".two-thousand-twelve").on("click", function(){
-	updateDataViz(dataPath2012, electionTotalsPath);
-	d3.select(".total-year").text(" 2012");
-	d3.select(".state-year").text(" 2012");
+d3.select(".two-thousand-four").on("click", function(){
+	updateDataViz(dataPath2004, electionTotalsPath);
+	d3.select(".total-year").text(" 2004");
+	d3.select(".state-year").text(" 2004");
 
 });
+
