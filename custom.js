@@ -214,7 +214,7 @@ d3.select(".chart svg").remove("svg");
 		var data = json; 
 
 
-		var margins = {top:30, right: 20, bottom: 30, left: 30}
+		var margins = {top:30, right: 20, bottom: 30, left: 30}; 
 		var chartHeight = 500 - margins.top - margins.bottom;
 		var chartWidth = 850 -margins.right - margins.left;
 		var padding = 70; 
@@ -432,7 +432,62 @@ d3.select(".chart svg").remove("svg");
 			.attr("dy", ".75em")
 			.text("Democratic Votes"); 
 
+			
+			d3.json("us-states.json", function(d){
+
+				
+				for (var i = 0; i < d.features.length; i ++){
+
+					var dataState = data[i].state;
+					console.log(dataState);  //value from dataXXXX.json
+					
+					var dataValue = parseInt(data[i].rep_votes - data[i].dem_votes); 
+					console.log(dataValue);
+
+					  //Find the corresponding state inside the GeoJSON
+			            for (var j = 0; j < d.features.length; j++) {
+
+			            var jsonState = d.features[j].properties.name;
+
+			            if (dataState == jsonState) {
+
+			                //Copy the data value into the JSON
+			                d.features[j].properties.value = dataValue;
+
+			                //Stop looking through the JSON
+			                break; 
+					}
+				}
+
+			}
+
+			console.log(d); 	
+
+				var w = 1000; 
+				var h = 1000;  
+
+				var mapSVG = d3.select(".chloropleth").append('svg').attr("width", 1000).attr("height", 1000); 
+				var projection = d3.geo.albersUsa()
+                       .translate([w/2, h/2])
+                       .scale([1000]);
+
+				var path = d3.geo.path().projection(projection); 
+
+				mapSVG.selectAll("path")
+		           .data(d.features)
+		           .enter()
+		           .append("path")
+		           .attr("d", path);
+		           //add style to fill path with dyanmic color 
+		           //add onmouseover and onmouseout event handlers here 
+
+			}); 
+
+
+
 	});//End JSON Function 
+
+
 };//End generateDataViz
 
 //Call DataViz
